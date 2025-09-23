@@ -53,7 +53,7 @@ const ProfilePage = () => {
 
         try {
             setAccDeleteLoading(true);
-            const res = await fetch("https://prashantkumar-bb1twzo1.b4a.run/delete-user", {
+            const res = await fetch("https://notesyncc.vercel.app/delete-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId: user?.id, userEmail: user?.user_metadata?.email }),
