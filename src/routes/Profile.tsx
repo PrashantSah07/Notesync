@@ -53,7 +53,7 @@ const ProfilePage = () => {
 
         try {
             setAccDeleteLoading(true);
-            const res = await fetch("https://prashantkumar-bbxzsx64.b4a.run/delete-user", {
+            const res = await fetch("https://prashantkumar-1b924dht.b4a.run/delete-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId: user?.id, userEmail: user?.user_metadata?.email }),
