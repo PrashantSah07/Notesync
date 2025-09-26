@@ -76,28 +76,44 @@ const ProfilePage = () => {
         }
     }
 
+    function formateDate(data: string): string {
+        const date = new Date(data);
+
+        return date.toLocaleString("en-IN", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+        });
+    }
+
     return (
         <div className="max-w-[1550px] mx-auto relative">
             <Header isAuthenticated={true} />
 
-            <div className="absolute top-22 flex items-center justify-between px-5 w-full">
+            <div className="absolute top-22 flex items-center justify-between px-5 w-full gap-2">
                 <Link
                     to="/home"
                     className="border border-gray-200 bg-gray-50 hover:bg-accent dark:bg-input/20 dark:hover:bg-input/50 dark:border-gray-800 duration-200 px-5 py-2 rounded-sm text-[15px]">
                     Back
                 </Link>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon">
-                            <IoSettingsOutline />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="dark:bg-[#161028]">
-                        <DropdownMenuItem className="p-0">
-                            <button className={`${accDeleteLoading ? 'bg-red-400' : 'bg-red-500 hover:bg-red-600'} duration-200 w-full text-white rounded-sm p-1`} onClick={() => handleDeleteAccount()}>{accDeleteLoading ? 'Deleting...' : 'Delete Account'}</button>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <div className="flex items-center sm:gap-8 gap-4">
+                    <p className="text-[12px] text-right flex sm:flex-row flex-col"><span className="font-semibold">Last Sync:</span> {formateDate(user?.last_sign_in_at)}</p>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <IoSettingsOutline />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="dark:bg-[#161028]">
+                            <DropdownMenuItem className="p-0">
+                                <button className={`${accDeleteLoading ? 'bg-red-400' : 'bg-red-500 hover:bg-red-600'} duration-200 w-full text-white rounded-sm p-1`} onClick={() => handleDeleteAccount()}>{accDeleteLoading ? 'Deleting...' : 'Delete Account'}</button>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </div>
 
             <div className="sm:my-10 my-5 2xl:px-20 sm:px-10 px-3 mx-auto flex justify-center items-center lg:flex-row flex-col gap-8 w-full min-h-[70vh]">
